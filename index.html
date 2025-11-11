@@ -8,7 +8,7 @@
 <meta name="keywords" content="Ankur Rokad, Full Stack Developer, Software Engineer, TypeScript, Node.js, React, Kubernetes, DevOps, Healthcare SaaS, Fintech, Technical Lead">
 <meta name="author" content="Ankur Rokad">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#141414">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="profile">
@@ -26,6 +26,11 @@
 
 <!-- Canonical URL -->
 <link rel="canonical" href="https://ankurrokad.github.io/">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
@@ -84,14 +89,14 @@
 <style>
     * { box-sizing: border-box; }
     body {
-        font-family: Arial, sans-serif;
+        font-family: 'Noto Sans', sans-serif;
         font-size: 10pt;
-        color: #000;
+        color: #fcfcfc;
         margin: 0;
-        line-height: 1.3;
+        line-height: 1.7;
         hyphens: none;
         word-break: normal;
-        background-color: #f0f0f0;
+        background-color: #141414;
     }
 
     @page {
@@ -223,25 +228,25 @@
     }
     h2 {
         font-size: 12pt;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid #ffffff;
         padding-bottom: 2pt;
-        margin: 12pt 0 6pt;
+        margin: 16pt 0 10pt;
     }
     h3 {
         font-size: 11pt;
-        margin: 10pt 0 4pt;
+        margin: 12pt 0 6pt;
     }
 
     p {
-        margin: 0 0 4pt;
+        margin: 0 0 8pt;
     }
     ul {
         list-style-type: disc;
-        margin: 4pt 0 6pt 20pt;
+        margin: 6pt 0 10pt 20pt;
         padding-left: 0;
     }
     li {
-        margin-bottom: 2pt;
+        margin-bottom: 6pt;
     }
 
     .contact {
@@ -257,7 +262,7 @@
         content: "";
     }
     .job-block {
-        margin-bottom: 12pt;
+        margin-bottom: 16pt;
         page-break-inside: avoid;
     }
     .job-title {
@@ -267,21 +272,25 @@
     .date-location {
         font-style: italic;
         font-size: 9pt;
-        margin-bottom: 4pt;
+        margin-bottom: 8pt;
     }
     .skills p {
         font-size: 9pt;
-        line-height: 1.2;
+        line-height: 1.6;
     }
     a {
-        color: #000;
-        text-decoration: none;
+        color: #fcfcfc;
+        text-decoration: underline;
     }
     a:hover {
+        color: #fcfcfc;
         text-decoration: underline;
     }
     .contact a {
-        color: inherit;
+        color: #fcfcfc;
+    }
+    .contact a:hover {
+        color: #fcfcfc;
     }
 </style>
 </head>
@@ -421,6 +430,11 @@
 
 <section aria-labelledby="selected-projects">
     <h2 id="selected-projects">Selected Projects</h2>
+    <article class="job-block">
+        <h3>i18n Translator</h3>
+        <p>A production-ready CLI tool that translates JSON static content files using GroqCloud LLM API. <a href="https://github.com/ankurrokad/i18n-translator" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+        <p>Technologies: CLI, GroqCloud LLM API, JSON</p>
+    </article>
     <article class="job-block">
         <h3>Handlebar Parser</h3>
         <p>Realtime Handlebars template builder used internally to accelerate UI development.</p>
