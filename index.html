@@ -323,6 +323,141 @@
       .contact a:hover {
         color: #fcfcfc;
       }
+
+      /* Quick Jump Navigation */
+      .quick-jump-nav {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        z-index: 1000;
+        align-items: flex-end;
+      }
+
+      .nav-indicator {
+        background: none;
+        border: none;
+        padding: 12px 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        transition: all 0.3s ease;
+        position: relative;
+        min-width: 50px;
+      }
+
+      .indicator-line {
+        width: 25px;
+        height: 3px;
+        background-color: rgba(252, 252, 252, 0.3);
+        transition: all 0.3s ease;
+        display: block;
+      }
+
+      .nav-indicator:hover .indicator-line {
+        background-color: rgba(252, 252, 252, 0.6);
+        width: 30px;
+      }
+
+      .nav-indicator.active .indicator-line {
+        background-color: #fcfcfc;
+        width: 35px;
+      }
+
+      .tooltip {
+        position: absolute;
+        right: 45px;
+        background-color: rgba(20, 20, 20, 0.95);
+        color: #fcfcfc;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-family: "Newsreader", serif;
+        font-size: 11pt;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        pointer-events: none;
+        z-index: 1001;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-indicator:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      @media print {
+        .quick-jump-nav {
+          display: none !important;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .quick-jump-nav {
+          right: 10px;
+          gap: 20px;
+        }
+
+        .nav-indicator {
+          padding: 10px 6px;
+          min-width: 40px;
+        }
+
+        .indicator-line {
+          width: 20px;
+          height: 2px;
+        }
+
+        .nav-indicator:hover .indicator-line {
+          width: 25px;
+        }
+
+        .nav-indicator.active .indicator-line {
+          width: 28px;
+        }
+
+        .tooltip {
+          right: 38px;
+          font-size: 10pt;
+          padding: 5px 10px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .quick-jump-nav {
+          right: 8px;
+          gap: 15px;
+        }
+
+        .nav-indicator {
+          padding: 8px 5px;
+          min-width: 35px;
+        }
+
+        .indicator-line {
+          width: 18px;
+          height: 2px;
+        }
+
+        .nav-indicator:hover .indicator-line {
+          width: 22px;
+        }
+
+        .nav-indicator.active .indicator-line {
+          width: 25px;
+        }
+
+        .tooltip {
+          right: 32px;
+          font-size: 9.5pt;
+          padding: 4px 8px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -750,6 +885,49 @@
       </section>
     </main>
 
+    <nav class="quick-jump-nav" aria-label="Quick jump navigation">
+      <button
+        class="nav-indicator"
+        data-section="professional-summary"
+        aria-label="Jump to Professional Summary"
+      >
+        <span class="tooltip">Professional Summary</span>
+        <span class="indicator-line"></span>
+      </button>
+      <button
+        class="nav-indicator"
+        data-section="core-competencies"
+        aria-label="Jump to Core Competencies"
+      >
+        <span class="tooltip">Core Competencies</span>
+        <span class="indicator-line"></span>
+      </button>
+      <button
+        class="nav-indicator"
+        data-section="professional-experience"
+        aria-label="Jump to Professional Experience"
+      >
+        <span class="tooltip">Professional Experience</span>
+        <span class="indicator-line"></span>
+      </button>
+      <button
+        class="nav-indicator"
+        data-section="education"
+        aria-label="Jump to Education"
+      >
+        <span class="tooltip">Education</span>
+        <span class="indicator-line"></span>
+      </button>
+      <button
+        class="nav-indicator"
+        data-section="selected-projects"
+        aria-label="Jump to Selected Projects"
+      >
+        <span class="tooltip">Selected Projects</span>
+        <span class="indicator-line"></span>
+      </button>
+    </nav>
+
     <script>
       // Ensure all anchor tags open in new tabs
       document.querySelectorAll("a").forEach((link) => {
@@ -759,6 +937,104 @@
           link.setAttribute("rel", "noopener noreferrer");
         }
       });
+
+      // Quick Jump Navigation functionality
+      (function () {
+        const navIndicators = document.querySelectorAll(".nav-indicator");
+        const sections = document.querySelectorAll("section[id]");
+        let isScrolling = false;
+
+        // Set up IntersectionObserver to detect active section
+        const observerOptions = {
+          root: null,
+          rootMargin: "-20% 0px -60% 0px",
+          threshold: 0,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          if (isScrolling) return;
+
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const sectionId = entry.target.id;
+              navIndicators.forEach((indicator) => {
+                if (indicator.dataset.section === sectionId) {
+                  indicator.classList.add("active");
+                } else {
+                  indicator.classList.remove("active");
+                }
+              });
+            }
+          });
+        }, observerOptions);
+
+        // Observe all sections
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+
+        // Click-to-jump functionality
+        navIndicators.forEach((indicator) => {
+          indicator.addEventListener("click", (e) => {
+            e.preventDefault();
+            const sectionId = indicator.dataset.section;
+            const targetSection = document.getElementById(sectionId);
+
+            if (targetSection) {
+              isScrolling = true;
+              targetSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+
+              // Update active state immediately
+              navIndicators.forEach((ind) => ind.classList.remove("active"));
+              indicator.classList.add("active");
+
+              // Reset scrolling flag after animation
+              setTimeout(() => {
+                isScrolling = false;
+              }, 1000);
+            }
+          });
+        });
+
+        // Handle initial scroll position
+        const handleInitialScroll = () => {
+          const scrollPosition = window.scrollY + window.innerHeight / 3;
+          let activeSection = null;
+
+          sections.forEach((section) => {
+            const rect = section.getBoundingClientRect();
+            const sectionTop = rect.top + window.scrollY;
+            const sectionBottom = sectionTop + rect.height;
+
+            if (
+              scrollPosition >= sectionTop &&
+              scrollPosition <= sectionBottom
+            ) {
+              activeSection = section.id;
+            }
+          });
+
+          if (activeSection) {
+            navIndicators.forEach((indicator) => {
+              if (indicator.dataset.section === activeSection) {
+                indicator.classList.add("active");
+              } else {
+                indicator.classList.remove("active");
+              }
+            });
+          }
+        };
+
+        // Set initial active state
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", handleInitialScroll);
+        } else {
+          handleInitialScroll();
+        }
+      })();
     </script>
   </body>
 </html>
