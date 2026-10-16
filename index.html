@@ -6,11 +6,11 @@
     <title>Ankur Rokad - Senior Software Engineer | Resume</title>
     <meta
       name="description"
-      content="Senior software engineer with 6+ years of experience building SaaS platforms for healthcare and fintech. Expert in TypeScript, Node.js, React, Kubernetes, and cloud architecture."
+      content="Senior software engineer with 6+ years across backend systems, data platforms, LLM agents, and healthcare/fintech compliance. TypeScript, Node.js, BigQuery, MongoDB, Kubernetes, and payments."
     />
     <meta
       name="keywords"
-      content="Ankur Rokad, Senior Software Engineer, Software Engineer, TypeScript, Node.js, React, Kubernetes, DevOps, Healthcare SaaS, Fintech, Technical Lead"
+      content="Ankur Rokad, Senior Software Engineer, Software Engineer, TypeScript, Node.js, React, Kubernetes, DevOps, Healthcare SaaS, Fintech, Technical Lead, BigQuery, LLM Agents, Payments, Data Engineering"
     />
     <meta name="author" content="Ankur Rokad" />
     <meta name="robots" content="index, follow" />
@@ -25,7 +25,7 @@
     />
     <meta
       property="og:description"
-      content="Senior software engineer with 6+ years of experience building SaaS platforms for healthcare and fintech. Expert in TypeScript, Node.js, React, Kubernetes, and cloud architecture."
+      content="Senior software engineer with 6+ years across backend systems, data platforms, LLM agents, and healthcare/fintech compliance. TypeScript, Node.js, BigQuery, MongoDB, Kubernetes, and payments."
     />
     <meta property="og:locale" content="en_US" />
     <meta property="profile:first_name" content="Ankur" />
@@ -39,7 +39,7 @@
     />
     <meta
       name="twitter:description"
-      content="Senior software engineer with 6+ years of experience building SaaS platforms for healthcare and fintech."
+      content="Senior software engineer: backend systems, data platforms, LLM agents, and healthcare/fintech compliance."
     />
 
     <!-- Canonical URL -->
@@ -62,7 +62,7 @@
         "email": "ankurrokad@gmail.com",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Kitchener",
+          "addressLocality": "Burlington",
           "addressRegion": "Ontario",
           "addressCountry": "CA"
         },
@@ -90,6 +90,10 @@
           "DevOps",
           "Backend Systems",
           "SaaS Development",
+          "BigQuery",
+          "LLM Agents",
+          "Data Engineering",
+          "Payment Reconciliation",
           "Healthcare Technology",
           "Fintech"
         ],
@@ -481,7 +485,7 @@
       <header>
         <h1>Ankur Rokad</h1>
         <div class="contact">
-          <span class="contact-item">Kitchener, Ontario</span>
+          <span class="contact-item">Burlington, Ontario</span>
           <span class="contact-item"
             ><a
               href="mailto:ankurrokad@gmail.com"
@@ -515,11 +519,13 @@
           Senior software engineer with 6+ years across backend systems,
           technical leadership, and healthcare/fintech compliance. Scaled from
           individual contributor into leading a 12-person team at Omniva
-          Telehealth, then deliberately returned to individual contributor work
-          at Rocket.new to build analytics infrastructure directly. Now builds and
-          ships analytics infrastructure directly, using AI-assisted
-          development to execute at the speed and scope that used to require a
-          full team.
+          Telehealth, then returned to individual contributor work at
+          Rocket.new to build analytics, payments, and AI infrastructure
+          directly. Reconciles and validates payments at scale, works with the
+          CTO on financial and product-usage data for the Series A fundraise,
+          and builds LLM agents with tool calling and guardrails. Uses
+          AI-assisted development (Claude Code) to execute at the speed and
+          scope that used to require a full team.
         </p>
       </section>
 
@@ -527,13 +533,16 @@
         <h2 id="core-competencies">Core Competencies</h2>
         <div class="skills">
           <p>
-            TypeScript, JavaScript, Node.js, Express.js, NestJS, Sails.js,
+            TypeScript, JavaScript, SQL, Node.js, Express.js, NestJS, Sails.js,
             React, Next.js, ShadCN UI, D3.js, MongoDB, Microsoft SQL Server,
-            PostgreSQL, SQL, GraphQL, REST APIs, Kubernetes, Docker, AWS EC2,
-            AWS Lightsail, Vercel, DigitalOcean, Cloudflare, Git, GitHub, CI/CD
-            pipelines, ClickUp, Stripe, Authorize.net, RazorPay, Paystack,
-            PostMark, Twilio, CASL (RBAC), GDPR, PHIPA, PIPEDA, AI/ML (Python
-            prototypes), Python
+            PostgreSQL, BigQuery, Dataform, Airbyte, Mixpanel, Redis, BullMQ,
+            GraphQL, REST APIs, LLM agents and tool calling (OpenAI GPT),
+            Claude Code, Slack API, WhatsApp, Telegram, Kubernetes, Docker, AWS
+            EC2, AWS Lightsail, Vercel, DigitalOcean, Cloudflare, MinIO, Git,
+            GitHub, CI/CD pipelines, ClickUp, Stripe, Authorize.net, RazorPay,
+            Paystack, PostMark, Twilio, CASL (RBAC), GDPR, PHIPA, PIPEDA,
+            Payment Reconciliation, Dimensional Data Modeling, Python
+            (AI/ML prototypes)
           </p>
         </div>
       </section>
@@ -553,28 +562,38 @@
           </p>
           <ul>
             <li>
-              Building MongoDB-based analytics pipelines for LLM token usage
-              tracking.
+              Process Stripe payments and map them to subscription cycles, validating each payment and generating payment sheets for finance.
             </li>
             <li>
-              Architected a two-tier rollup system with daily and monthly
-              aggregation layers.
+              Automated payment processing that was handled manually at 70,000 payments; the pipeline now processes 175K transactions and grows by 10-12K a month.
             </li>
             <li>
-              Implemented idempotent upserts and watermarking for reliable
-              incremental processing.
+              Perform root-cause analysis daily on billing issues: trace affected users through their subscription lifecycle and use SQL to find missing links between subscription cycles and Stripe payments.
             </li>
             <li>
-              Planning an export pipeline to BigQuery for downstream
-              analytics.
+              Prepare financial and product-usage data with the CTO for the Series A fundraise, including a monthly report on user funnel, MRR, plan-wise contribution, geographic distribution, and revenue and user retention cohorts.
             </li>
             <li>
-              Uses AI-assisted development (Claude Code) to execute
-              independently at a pace that previously required a larger team.
+              Built an investor-facing data platform showing month-on-month metrics: self-hosted Airbyte stages MongoDB and Mixpanel data in BigQuery, and Dataform deduplicates it and builds dimensions, facts, and metrics.
+            </li>
+            <li>
+              Built an LLM agent (GPT models, tool calling) that turns plain-English questions into safe, read-only BigQuery SQL, discovering schemas on demand through tools instead of loading the full schema into the prompt; guardrails allow only non-DDL queries and keep PII away from the LLM.
+            </li>
+            <li>
+              Built a multi-channel notification and two-way chat service so users who leave during long-running builds are reached on Slack, WhatsApp, or Telegram and can reply to keep the agent working; built in-house instead of on a third-party provider such as Twilio.
+            </li>
+            <li>
+              Replaced an underperforming Attio CRM agent workflow with an in-house LLM lead-qualification router and email-writer agents for enterprise custom-build deals, with human-in-the-loop steps for solution engineers.
+            </li>
+            <li>
+              Built MongoDB-based analytics pipelines for LLM token usage tracking, with a two-tier daily and monthly rollup system, idempotent upserts, and watermarking for reliable incremental processing.
+            </li>
+            <li>
+              Uses AI-assisted development (Claude Code) to execute independently at a pace that previously required a larger team.
             </li>
           </ul>
           <p>
-            Technologies: MongoDB, TypeScript, Node.js, BigQuery, Claude Code
+            Technologies: TypeScript, Node.js, MongoDB, BigQuery, Dataform, Airbyte, Mixpanel, Stripe, OpenAI GPT, Slack API, WhatsApp, Telegram, Claude Code
           </p>
         </article>
 
@@ -588,13 +607,14 @@
           <p class="date-location">Surat, India • Feb 2025 – Nov 2025</p>
           <ul>
             <li>
-              Lead a cross-functional team of 12 developers to design, build,
+              Led a cross-functional team of 12 developers to design, build,
               and maintain a Telehealth SaaS platform.
             </li>
             <li>
               Architected a monorepo migration from JavaScript to TypeScript,
               separating business logic into reusable modules.
             </li>
+            <li>Reviewed pull requests for the development team.</li>
             <li>
               Directed end-to-end technical execution across frontend and
               backend, ensuring scalability and security.
@@ -668,6 +688,7 @@
               platform, guiding architecture, feature delivery, and quality
               assurance.
             </li>
+            <li>Reviewed pull requests for the development team.</li>
             <li>
               Integrated third-party services including Stripe, PostMark, and
               Twilio to enhance communication and payment workflows.
@@ -824,6 +845,41 @@
       <section aria-labelledby="selected-projects">
         <h2 id="selected-projects">Selected Projects</h2>
         <article class="job-block">
+          <h3>Text-to-BigQuery Analytics Agent <span style="font-size: 9pt">&middot; 2026 &middot; Rocket.new</span></h3>
+          <p>
+            LLM agent that takes a plain-text question, explores table schemas
+            through tool calls, and prepares a safe read-only BigQuery query,
+            keeping the context window small by retrieving schema details
+            dynamically. Guardrails restrict it to non-DDL queries, no PII is
+            shared with the LLM, and a full-stack interface lets users chat,
+            edit queries, and view results as tables, JSON, and charts.
+          </p>
+          <p>Technologies: OpenAI GPT, TypeScript, Node.js, BigQuery, MongoDB</p>
+        </article>
+        <article class="job-block">
+          <h3>Multi-Channel Notification Service <span style="font-size: 9pt">&middot; 2026 &middot; Rocket.new</span></h3>
+          <p>
+            Fallback channel for an AI app-builder agent: users who leave
+            during long builds are notified on Slack, WhatsApp, or Telegram
+            and can reply so the agent keeps working. Conversations are
+            two-way with per-channel UX (interactive Slack messages, text
+            replies with project selection elsewhere) and LLM-based message
+            compaction.
+          </p>
+          <p>Technologies: TypeScript, Node.js, Slack API, WhatsApp, Telegram</p>
+        </article>
+        <article class="job-block">
+          <h3>Custom-Build Lead Qualification Agents <span style="font-size: 9pt">&middot; 2026 &middot; Rocket.new</span></h3>
+          <p>
+            Custom router and multi-agent workflow that scores and ranks
+            enterprise custom-build leads, drafts decline, clarifying, and
+            prototype-ready emails, and escalates ambiguous high-budget deals
+            to solution engineers. Replaced an Attio CRM setup that
+            underperformed and cost too much.
+          </p>
+          <p>Technologies: TypeScript, Node.js, OpenAI GPT, MongoDB</p>
+        </article>
+        <article class="job-block">
           <h3>
             Document Classifier
             <span style="font-size: 9pt">
@@ -904,18 +960,11 @@
           <p>Technologies: Node.js, GroqCloud, LangChain</p>
         </article>
         <article class="job-block">
-          <h3>
-            <a
-              href="https://sparrowhealth.ca"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Sparrow Health</a
-            >
-          </h3>
+          <h3>Sparrow Health</h3>
           <p>
             Multi‑tenant Telehealth SaaS platform for North American clinics,
             featuring appointment scheduling, shift management, and family
-            wallets.
+            wallets (since shut down).
           </p>
           <p>
             Technologies: TypeScript, NestJS, MongoDB, Kubernetes, Stripe,
